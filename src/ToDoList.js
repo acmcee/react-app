@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
 import ToDoItem from "./ToDoItem";
+import './ToDoList.css'
 
 
-class ToDoList extends React.Component {
+class ToDoList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,19 +48,22 @@ class ToDoList extends React.Component {
     };
 
     render() {
+
+        //  React.Fragment 表示就是个片段，不会输出具体的div 标签
         return (
-            <div className="App">
+            <Fragment>
+
                 <div>
                     <input onChange={this.handleInputChange}
                            value={this.state.inputValue}/>
-                    <button onClick={this.handleAddButClick}>add</button>
+                    <button  className="red-btn" onClick={this.handleAddButClick}>add</button>
                 </div>
                 <div>
                     <ul>
                         {this.getToDoItems()}
                     </ul>
                 </div>
-            </div>
+            </Fragment>
         )
     }
 }
