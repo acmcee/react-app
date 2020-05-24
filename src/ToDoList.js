@@ -20,7 +20,7 @@ class ToDoList extends React.Component {
 
     handleAddButClick = () => {
         let value = this.state.inputValue;
-        if (value === ""){
+        if (value === "") {
             value = "hello world"
         }
         this.setState({
@@ -30,11 +30,20 @@ class ToDoList extends React.Component {
     };
 
     handleDelete = (index) => {
-        console.log("del "+ index);
         const newList = [...this.state.ulList];
         newList.splice(index, 1);
-        console.log(newList);
         this.setState({ulList: newList})
+    };
+
+
+    getToDoItems = () => {
+        return (
+            this.state.ulList.map((item, index) => {
+                return <ToDoItem key={index} index={index} item={item}
+                                 handleDelete={this.handleDelete}>
+                </ToDoItem>
+            })
+        )
     };
 
     render() {
@@ -47,11 +56,7 @@ class ToDoList extends React.Component {
                 </div>
                 <div>
                     <ul>
-                        {this.state.ulList.map((item, index) => {
-                            return <ToDoItem key={index} index={index} item={item} handleDelete={this.handleDelete}> </ToDoItem>
-
-                           // return <li key={index}>{item}</li>
-                        })}
+                        {this.getToDoItems()}
                     </ul>
                 </div>
             </div>
