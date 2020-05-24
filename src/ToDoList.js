@@ -17,7 +17,10 @@ class ToDoList extends React.Component {
     };
 
     handleAddButClick = () => {
-        this.setState({ulList: [...this.state.ulList, this.state.inputValue]})
+        this.setState({
+            ulList: [...this.state.ulList, this.state.inputValue],
+            inputValue: ''
+        })
     };
 
     handleDelButClick = () => {
@@ -30,7 +33,8 @@ class ToDoList extends React.Component {
         return (
             <div className="App">
                 <div>
-                    <input defaultValue={this.state.inputValue} onChange={this.handleInputChange}/>
+                    <input onChange={this.handleInputChange}
+                           value={this.state.inputValue}/>
                     <button onClick={this.handleAddButClick}>add</button>
                     <button onClick={this.handleDelButClick}>delete</button>
                 </div>
