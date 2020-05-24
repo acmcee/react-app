@@ -1,4 +1,6 @@
 import React from 'react';
+import ToDoItem from "./ToDoItem";
+
 
 class ToDoList extends React.Component {
     constructor(props) {
@@ -27,7 +29,7 @@ class ToDoList extends React.Component {
         })
     };
 
-    handleDelClick = (index) => {
+    handleDelete = (index) => {
         console.log("del "+ index);
         const newList = [...this.state.ulList];
         newList.splice(index, 1);
@@ -46,7 +48,9 @@ class ToDoList extends React.Component {
                 <div>
                     <ul>
                         {this.state.ulList.map((item, index) => {
-                            return <li key={index} onClick={this.handleDelClick.bind(this, index)}>{item}</li>
+                            return <ToDoItem key={index} index={index} item={item} handleDelete={this.handleDelete}> </ToDoItem>
+
+                           // return <li key={index}>{item}</li>
                         })}
                     </ul>
                 </div>
