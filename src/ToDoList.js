@@ -4,8 +4,8 @@ class ToDoList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ulList: ['learn react', 'learn englist'],
-            inputValue: "hello wordl"
+            ulList: ['learn react', 'learn english'],
+            inputValue: "hello world"
         }
     }
 
@@ -17,16 +17,22 @@ class ToDoList extends React.Component {
     };
 
     handleAddButClick = () => {
+        let value = this.state.inputValue;
+        if (value === ""){
+            value = "hello world"
+        }
         this.setState({
-            ulList: [...this.state.ulList, this.state.inputValue],
+            ulList: [...this.state.ulList, value],
             inputValue: ''
         })
     };
 
-    handleDelButClick = () => {
-        const newUlList = this.state.ulList;
-        newUlList.pop();
-        this.setState({ul_list: newUlList})
+    handleDelClick = (index) => {
+        console.log("del "+ index);
+        const newList = [...this.state.ulList];
+        newList.splice(index, 1);
+        console.log(newList);
+        this.setState({ulList: newList})
     };
 
     render() {
@@ -36,12 +42,11 @@ class ToDoList extends React.Component {
                     <input onChange={this.handleInputChange}
                            value={this.state.inputValue}/>
                     <button onClick={this.handleAddButClick}>add</button>
-                    <button onClick={this.handleDelButClick}>delete</button>
                 </div>
                 <div>
                     <ul>
                         {this.state.ulList.map((item, index) => {
-                            return <li key={index}>{item}</li>
+                            return <li key={index} onClick={this.handleDelClick.bind(this, index)}>{item}</li>
                         })}
                     </ul>
                 </div>
